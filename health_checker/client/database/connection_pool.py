@@ -3,8 +3,6 @@ import logging
 import queue
 
 import MySQLdb
-import pymysql
-
 LOG = logging.getLogger(__name__)
 
 

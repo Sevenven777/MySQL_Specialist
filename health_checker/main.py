@@ -9,6 +9,7 @@ import os
 import sys
 import traceback
 
+# 解决了相对导入包的问题
 pkg_root = os.path.realpath(os.path.join(os.path.realpath(__file__),
                                          os.path.pardir,
                                          os.path.pardir))
@@ -21,7 +22,7 @@ from health_checker.client.client import Client
 from health_checker.server.health_checker_server import HealthCheckerServer
 
 
-
+# 注册日志配置文件
 log_cnf = os.path.join(pkg_root, 'conf', 'logging.cnf')
 logging.config.fileConfig(log_cnf, disable_existing_loggers=False)
 LOG = logging.getLogger(__name__)
@@ -50,8 +51,9 @@ def main():
     """ entry point """
     try:
         parser = _argparse()
-        # d = dict(host="59.111.124.115", user='laimingxing', password='laimingxing', port=3306, size=3)
+        # d = dict(host="127.0.0.1", user='root', password='123456', port=3306, size=3)
         Env.database = DatabaseManager(host=parser.host, user=parser.user, password=parser.password, port=parser.port)
+
 
         server = HealthCheckerServer(Client())
         server.do_health_check()
