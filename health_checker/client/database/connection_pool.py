@@ -14,7 +14,7 @@ class ConnectionPool(object):
         self.kwargs = kwargs
         # 存放数据库的连接
         self.conn_queue = queue.Queue(maxsize=self.size)
-        # 建立好十个与数据库的连接，把这些连接放到队列中
+        # 建立好size个与数据库的连接，把这些连接放到队列中
         for i in range(self.size):
             self.conn_queue.put(self._create_new_conn())
 
