@@ -9,11 +9,11 @@ test.py由命令行输入参数，测试系统是否能正常运行，命令行�
 
 现有的检查项有：
 > CheckBinaryLogs
-> CheckBinaryLogs
-> CheckBinaryLogs
-> CheckBinaryLogs
-> CheckRedoLog
-> CheckConnections
+CheckBinaryLogs
+CheckBinaryLogs
+CheckBinaryLogs
+CheckRedoLog
+CheckConnections
 
 可以根据advise中的建议再添加新的检查项。
 
