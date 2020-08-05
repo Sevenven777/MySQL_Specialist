@@ -8,12 +8,17 @@ test下的文件可以测试数据库的连接。
 test.py由命令行输入参数，测试系统是否能正常运行，命令行输入参数的格式已经写在代码中。
 
 现有的检查项有：
-> CheckBinaryLogs
-CheckBinaryLogs
-CheckBinaryLogs
-CheckBinaryLogs
-CheckRedoLog
-CheckConnections
+- CheckBinaryLogs
+    - check_binlog_format
+    - check_sync_binlog
+    - self.check_expire_logs_days
+    - self.check_binlog_size
+- CheckRedoLog
+    - check_innodb_flush_log_at_trx_commit
+    - check_flush_method
+    - check_redo_log_file_size
+- CheckConnections
+    - check_max_connections
 
 可以根据advise中的建议再添加新的检查项。
 
