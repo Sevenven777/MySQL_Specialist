@@ -36,7 +36,7 @@ class ConnectionPool(object):
     def _get_conn(self):
         """
         当要连接数据库时，不再创建新的连接，而是之间从队列中获取连接，用完之后再把连接放回队列中，如果获取的连接为空，再新建连接。
-        :return:
+        :return: conn
         """
         # get():如果队列为空，get会等待，直到队列里有数据以后再取值，get取值会在队列中移除一个数据，所以当取完连接用完之后，要再使用put方法把连接放回连接池。（get默认为阻塞调用，非阻塞调用方法为get_nowait()）
         # get_nowait()：取值的时候不等待，如果取不到值，程序直接崩溃，所以在获取队列的数据的时候要统一使用get，代码才不会有问题
@@ -49,10 +49,10 @@ class ConnectionPool(object):
     def exec_sql(self, sql):
         conn = self._get_conn()
         try:
-            # 获取连接后，一般要创建游标，然后使用游标再进行对数据的增删改查，这里使用了with语句，就不用再创建游标了。cur执行SQL语句，然后使用fetchall返回所有匹配的每个元素，每个元素作为一个元组组成一个大元组，最后返回的是这一个大元组。
-            with conn as cur:
-                cur.execute(sql)
-                return cur.fetchall()
+            # 获取连接后，创建游标，使用游标再进行对数据的增删改查。cur执行SQL语句，然后使用fetchall返回所有匹配的每个元素，每个元素作为一个元组组成一个大元组，最后返回的是这一个大元组。
+            cur = conn.cursor()
+            cur.execute(sql)
+            return cur.fetchall()
         # 捕获异常
         except MySQLdb.ProgrammingError as e:
             # 将异常记录到日志中
@@ -72,6 +72,7 @@ class ConnectionPool(object):
             while True:
                 conn = self.conn_queue.get_nowait()
                 if conn:
+                    # pass
                     conn.close()
         # queue.Empty的作用是，如果队列为空，返回True，如果不为空，返回False
         except queue.Empty:
