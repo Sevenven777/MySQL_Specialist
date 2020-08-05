@@ -1,7 +1,5 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
-from __future__ import print_function
-
+# -*- coding: UTF-8 -*-
 import argparse
 import logging.config
 import os
@@ -17,9 +15,7 @@ sys.path.append(pkg_root)
 from health_checker.client.env import Env
 from health_checker.client.database.mysql import DatabaseManager
 from health_checker.client.client import Client
-
 from health_checker.server.health_checker_server import HealthCheckerServer
-
 
 # 注册日志配置文件
 log_cnf = os.path.join(pkg_root, 'conf', 'logging.cnf')
@@ -31,13 +27,22 @@ def _argparse():
     """
     argument parser
     """
+    # 创建一个解析对象
+    # description参数用于插入描述脚本用途的信息，可以为空
     parser = argparse.ArgumentParser(description='health checker for MySQL database')
+    # add_argument：向该对象中添加要关注的命令行参数和选项
+    # --host --user等：选项字符串的名字或列表，例如foo或-fo，--foo
+    # action：命令行遇到参数时候的动作，默认为store
+    # dest：解析后的参数名称
     parser.add_argument('--host', action='store', dest='host', required=True,
                         help='connect to host')
     parser.add_argument('--user', action='store', dest='user', required=True,
                         help='user for login')
     parser.add_argument('--password', action='store', dest='password',
                         required=True, help='password to use when connecting to server')
+    # type：命令行参数应该被转换的类型
+    # help：一些帮助信息
+    # default：不指定参数时的默认参数
     parser.add_argument('--port', action='store', dest='port', default=3306,
                         type=int, help='port number to use for connection or 3306 for default')
     parser.add_argument('--conn_size', action='store', dest='conn_size', default=5,
