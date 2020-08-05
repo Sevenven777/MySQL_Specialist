@@ -13,8 +13,7 @@ def lower_case_with_underscores(name):
     """
     convert camel case to under_line case
     CamelCase -> camel_case
-    link: (http://stackoverflow.com/questions/1175208/
-    elegant-python-function-to-convert-camelcase-to-camel-case)
+    link: (http://stackoverflow.com/questions/1175208/elegant-python-function-to-convert-camelcase-to-camel-case)
     """
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
@@ -24,9 +23,8 @@ def get_disk_capacity(path):
     """
     通过MySQL的变量datadir获取数据盘的路径，再使用psutil获取数据盘的空间
     In [1]: import psutil
-
-    In [2]: psutil.disk_usage('/ebs/mysql_data')
-    Out[2]: sdiskusage(total=214643507200, used=16532504576, free=198111002624, percent=7.7)
+    In [2]: psutil.disk_usage('D:\install\Anaconda3')
+    Out[2]: sdiskusage(total=128017494016, used=105108848640, free=22908645376, percent=82.1)
     """
     return psutil.disk_usage(path).total
 
