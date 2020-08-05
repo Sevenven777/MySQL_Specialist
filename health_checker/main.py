@@ -3,7 +3,6 @@
 from __future__ import print_function
 
 import argparse
-import logging
 import logging.config
 import os
 import sys
@@ -50,10 +49,16 @@ def _argparse():
 def main():
     """ entry point """
     try:
-        parser = _argparse()
         # d = dict(host="127.0.0.1", user='root', password='123456', port=3306, size=3)
-        Env.database = DatabaseManager(host=parser.host, user=parser.user, password=parser.password, port=parser.port)
 
+        # parser = _argparse()
+        # Env.database = DatabaseManager(host=parser.host, user=parser.user, password=parser.password, port=parser.port)
+
+        # 此行是命令行输入的格式
+        # python main.py --host 127.0.0.1 --user root --password  123456 --port 3306
+
+        # 可以将此行注释掉，将parser和Env行的注释取消掉，使用命令行输入数据库的参数，由_argparse进行参数解析，再连接数据库
+        Env.database = DatabaseManager(host='127.0.0.1', user='root', password='123456', port=3306)
 
         server = HealthCheckerServer(Client())
         server.do_health_check()

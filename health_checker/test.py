@@ -48,6 +48,7 @@ def main():
         # d = dict(host="127.0.0.1", user='root', password='123456', port=3306, size=3)
         Env.database = DatabaseManager(host=parser.host, user=parser.user, password=parser.password, port=parser.port)
 
+        # 命令行输入以下参数，进行连接测试
         # python test.py --host 127.0.0.1 --user root --password  123456 --port 3306
         client = Client()
         print(client(action='CheckBinaryLogs'))
