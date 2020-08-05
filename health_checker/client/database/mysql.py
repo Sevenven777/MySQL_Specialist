@@ -1,6 +1,8 @@
 # -*- coding:UTF-8 -*-
 import logging
 
+from psutil import long
+
 from health_checker.client.database.connection_pool import ConnectionPool
 from health_checker.client.util import check_required_args
 
