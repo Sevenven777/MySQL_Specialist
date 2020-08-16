@@ -15,8 +15,8 @@ class HealthCheckerServer(object):
             # globals() 以字典类型返回当前位置的全部全局变量。
             cls = globals()[point]
             # 参数传递给了GenericWorker
-            print(type(globals()[point]))
-            print(isinstance(globals()[point], list))
+            # print(type(globals()[point]))
+            # print(isinstance(globals()[point], list))
             self.workers.append(cls(self, "catag", point))
 
         print(self.workers)
