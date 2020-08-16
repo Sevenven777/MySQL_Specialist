@@ -1,11 +1,7 @@
-
-
 import logging
-
 
 from health_checker.client.env import Env
 from health_checker.client.util import get_disk_capacity
-
 
 LOG = logging.getLogger(__name__)
 
@@ -13,9 +9,8 @@ LOG = logging.getLogger(__name__)
 class CheckRedoLog(object):
 
     def __init__(self, params):
-        self.params= params
+        self.params = params
         self.res = {}
-
 
     def __call__(self):
         res = {}

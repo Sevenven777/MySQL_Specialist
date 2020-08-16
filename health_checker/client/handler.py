@@ -19,6 +19,7 @@ class MsgHandler(object):
         return func
 
     def execute(self, action, params):
+
         func = self.fetch_action_func(action)
         if func is None:
             return False, "Action not found, {0}".format(action)

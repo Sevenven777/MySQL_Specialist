@@ -1,2 +1,5 @@
 nose
-psutil
+psutil~=5.7.2
+
+setuptools~=44.1.0
+mysqlclient~=2.0.1

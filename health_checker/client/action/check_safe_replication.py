@@ -1,8 +1,6 @@
 import logging
 
-
 from health_checker.client.env import Env
-
 
 LOG = logging.getLogger(__name__)
 
@@ -10,7 +8,7 @@ LOG = logging.getLogger(__name__)
 class CheckSafeReplication(object):
 
     def __init__(self, params):
-        self.params= params
+        self.params = params
 
     def get_slave_status(self):
         res = {}
@@ -23,6 +21,10 @@ class CheckSafeReplication(object):
         return res
 
     def __call__(self):
+        """
+        重载call方法，将对象变为一个可调用的对象
+        :return:
+        """
         res = dict(is_slave=Env.database.is_slave)
 
         if Env.database.is_slave:

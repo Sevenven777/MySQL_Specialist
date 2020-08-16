@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 import logging
 import time
 
@@ -7,6 +7,10 @@ LOG = logging.getLogger(__name__)
 
 
 class GenericWorker(object):
+    """
+    父类实现记录时间、打印日志、处理异常
+    """
+
     def __init__(self, server, catalog, name):
         self.server = server
         self.catalog = catalog
@@ -23,7 +27,7 @@ class GenericWorker(object):
         LOG.info('fnished for health check : {0} in {1}'.format(self.name, elipse))
 
     def map(self):
-
+        """map-reduce架构"""
         try:
             self.print_start_info()
             self.execute()
@@ -32,10 +36,10 @@ class GenericWorker(object):
         else:
             self.print_end_info()
 
-
     def execute(self):
+        # 子类重写了该方法
         raise NotImplementedError('=====You did not implemented this function =====')
 
-
     def reduce(self, other):
+        # 在列表末尾一次性追加另一个序列中的多个值
         self.rs.extend(other.rs)

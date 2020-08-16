@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 import logging
 from health_checker.server.worker.generic_worker import GenericWorker
 from health_checker.server.util import CheckResult
@@ -8,7 +8,6 @@ from health_checker.server.util import humanize_bytes
 
 
 class CheckConnections(GenericWorker):
-
 
     @property
     def action(self):
@@ -31,7 +30,6 @@ class CheckConnections(GenericWorker):
     def do_check(self):
         self.check_max_connections()
 
-
     def check_max_connections(self):
         """
             In [1]: 1024 / 200.0
@@ -52,7 +50,8 @@ class CheckConnections(GenericWorker):
 
         max_connections = self.body.get('max_connections')
         if max_connections < low or max_connections > up:
-            result.advise = Advise.max_connection_warning.format(max_connections, humanize_bytes(innodb_buffer_pool_size),
+            result.advise = Advise.max_connection_warning.format(max_connections,
+                                                                 humanize_bytes(innodb_buffer_pool_size),
                                                                  int(low), int(up), int(recommend))
             result.score = -result.score
 

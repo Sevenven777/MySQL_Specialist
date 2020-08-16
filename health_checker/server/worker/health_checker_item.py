@@ -1,10 +1,11 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 
 import itertools
 
+
 class HealthCheckItem(object):
-    #all_check_items = {
+    # all_check_items = {
     #        'CheckIndex'       : ['CheckPrimaryKey', 'CheckInvalidIndex', 'CheckRedundancyIndex', 'CheckIndexCardinality'],
     #        'CheckParameter'   : ['CheckMemoryParameter', 'CheckRedoLog', 'CheckBinaryLog', 'CheckConnections'],
     #        'CheckReplication' : ['CheckSafeReplication'],
@@ -12,8 +13,8 @@ class HealthCheckItem(object):
     #        'CheckSecurity'    : ['CheckPrivileges']
     #        }
     all_check_items = {
-            'CheckParameter'   : ['CheckBinaryLog', 'CheckConnections'],
-            }
+        'CheckParameter': ['CheckBinaryLog', 'CheckConnections'],
+    }
     all_health_points = list(itertools.chain(*all_check_items.viewvalues()))
 
     @staticmethod

@@ -1,6 +1,5 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
-from __future__ import print_function
+# -*- coding: UTF-8 -*-
 import logging
 
 from health_checker.server.worker.generic_worker import GenericWorker
@@ -8,8 +7,8 @@ from health_checker.server.util import CheckResult
 from health_checker.server.util import humanize_bytes
 from health_checker.server.worker.advise import Advise
 
-
 LOG = logging.getLogger(__name__)
+
 
 class CheckRedoLog(GenericWorker):
 
@@ -82,11 +81,11 @@ class CheckRedoLog(GenericWorker):
         m = 1024 * 1024
 
         disk_capacity = self.body.get('disk_capacity')
-        if disk_capacity <= 20*g:
-            return (128*m, 256*m)
-        elif disk_capacity <= 50*g:
-            return (256*m, 512*m)
-        elif disk_capacity <= 100*g:
-            return (512*m, 1*g)
+        if disk_capacity <= 20 * g:
+            return (128 * m, 256 * m)
+        elif disk_capacity <= 50 * g:
+            return (256 * m, 512 * m)
+        elif disk_capacity <= 100 * g:
+            return (512 * m, 1 * g)
         else:
-            return (1*g, 4*g)
+            return (1 * g, 4 * g)

@@ -34,7 +34,6 @@ class DatabaseManager(object):
         rows = self.exec_sql(sql)
         return sum(long(row[1]) for row in rows)
 
-
     @property
     def is_slave(self):
         rows = self.exec_sql('show slave status')

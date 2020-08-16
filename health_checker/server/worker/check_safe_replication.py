@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 from __future__ import print_function
 from health_checker.server.worker.generic_worker import GenericWorker
 from health_checker.server.worker.advise import Advise
@@ -13,7 +13,6 @@ class CheckSafeReplication(GenericWorker):
         return self.__class__.__name__
 
     def execute(self):
-
         result = self.server.client(action=self.action)
         if not result.get('is_success'):
             return
@@ -41,7 +40,6 @@ class CheckSafeReplication(GenericWorker):
             result.score = -result.score
 
         self.rs.append(result)
-
 
         result = CheckResult.get_result_template(self, CheckResult.middle)
         if last_io_error:

@@ -1,28 +1,26 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 from __future__ import unicode_literals
 
 
 class Advise(object):
-    binlog_format_warning="您的配置参数binlog_format设置为{0}，建议设置为{1}，否则有主、从数据不一致的风险"
-    sync_binlog_warning="您的配置参数sync_binlog设置为{0}，建议设置为{1}，否则有主、从数据不一致的风险"
-    expire_binlog_days_warning="您的配置参数expire_logs_days设置为{0}，建议设置为{1}，否则存在binlog占用太多磁盘空间的风险"
-    binlog_size_too_large="您的磁盘空间为{0}，您的binlog占用空间为{1}，超过了阈值{2}%，建议您适当调小expire_logs_days，减少二进制日志保留时间"
+    binlog_format_warning = "您的配置参数binlog_format设置为{0}，建议设置为{1}，否则有主、从数据不一致的风险"
+    sync_binlog_warning = "您的配置参数sync_binlog设置为{0}，建议设置为{1}，否则有主、从数据不一致的风险"
+    expire_binlog_days_warning = "您的配置参数expire_logs_days设置为{0}，建议设置为{1}，否则存在binlog占用太多磁盘空间的风险"
+    binlog_size_too_large = "您的磁盘空间为{0}，您的binlog占用空间为{1}，超过了阈值{2}%，建议您适当调小expire_logs_days，减少二进制日志保留时间"
 
-    innodb_flush_log_at_trx_commit="您的数据库配置参数innodb_flush_log_at_trx_commit取值为{0}，建议您修改该值为{1}，否则当数据库宕机时，您的数据存在丢失风险"
-    innodb_flush_method="您的数据库配置参数innodb_flush_method取值为{0}，建议您修改该值为{1}，否则当操作系统宕机时，您的数据存在丢失风险"
-    innodb_log_file_size="您的磁盘空间为{0}，您的数据库配置参数innodb_log_file_size取值为{1}，该值太大会影响数据库故障恢复的速度，该值太小会影响数据库的性能，根据您的磁盘空间，我们建议您取值为{2}到{3}之间"
+    innodb_flush_log_at_trx_commit = "您的数据库配置参数innodb_flush_log_at_trx_commit取值为{0}，建议您修改该值为{1}，否则当数据库宕机时，您的数据存在丢失风险"
+    innodb_flush_method = "您的数据库配置参数innodb_flush_method取值为{0}，建议您修改该值为{1}，否则当操作系统宕机时，您的数据存在丢失风险"
+    innodb_log_file_size = "您的磁盘空间为{0}，您的数据库配置参数innodb_log_file_size取值为{1}，该值太大会影响数据库故障恢复的速度，该值太小会影响数据库的性能，根据您的磁盘空间，我们建议您取值为{2}到{3}之间"
 
-    max_connection_warning="数据库连接数过多容易造成线程频繁的上下文切换，连接数过少不能充分发挥数据库的性能，您的数据库连接数是{0}，你的buffer pool大小是{1}，建议您的数据库连接数设置在{2}~{3}范围内，也可以直接设置为{4}"
+    max_connection_warning = "数据库连接数过多容易造成线程频繁的上下文切换，连接数过少不能充分发挥数据库的性能，您的数据库连接数是{0}，你的buffer pool大小是{1}，建议您的数据库连接数设置在{2}~{3}范围内，也可以直接设置为{4}"
 
-
-    slave_io_running_error="您的从机IO线程没有运行，请立刻手动修复该线程"
-    slave_sql_running_error="您的从机SQL线程没有运行，请立刻手动修复该线程"
-    last_io_error="您的从机复制出错，详情请查看Last_IO_Error信息，请立即手动修复该错误"
-    last_sql_error="您的从机复制出错，详情请查看Last_SQL_Error信息，请立即手动修复该错误"
-    relay_log_recovery="您的从机配置参数relay_log_recovery设置为{0}，从机宕机后存在主从数据不一致的风险，请修改该参数为{1}"
-    relay_log_info_repository="您的从机配置参数relay_log_info_repository设置为{0}，从机宕机后存在主从数据不一致的风险，请修改该参数为{1}"
-
+    slave_io_running_error = "您的从机IO线程没有运行，请立刻手动修复该线程"
+    slave_sql_running_error = "您的从机SQL线程没有运行，请立刻手动修复该线程"
+    last_io_error = "您的从机复制出错，详情请查看Last_IO_Error信息，请立即手动修复该错误"
+    last_sql_error = "您的从机复制出错，详情请查看Last_SQL_Error信息，请立即手动修复该错误"
+    relay_log_recovery = "您的从机配置参数relay_log_recovery设置为{0}，从机宕机后存在主从数据不一致的风险，请修改该参数为{1}"
+    relay_log_info_repository = "您的从机配置参数relay_log_info_repository设置为{0}，从机宕机后存在主从数据不一致的风险，请修改该参数为{1}"
 
 # # 索引检查优化建议
 # NoPrimaryKey=您的数据库{0}下的表{1}缺乏主键，建议添加主键
@@ -34,7 +32,6 @@ class Advise(object):
 #
 # SlaveThreadNotRuning=您的从机复制线程SLave Thread已经中断，请立刻手动修复复制线程
 #
-
 
 
 # BufferPoolTooLargeWarning=您的系统可用内存为{0}，建议您的配置参数innodb_buffer_pool_size小于等于{1}

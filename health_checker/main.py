@@ -64,7 +64,6 @@ def main():
 
         # 可以将此行注释掉，将parser和Env行的注释取消掉，使用命令行输入数据库的参数，由_argparse进行参数解析，再连接数据库
         Env.database = DatabaseManager(host='127.0.0.1', user='root', password='123456', port=3306)
-
         server = HealthCheckerServer(Client())
         server.do_health_check()
         server.get_summary()

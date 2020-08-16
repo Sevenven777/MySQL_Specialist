@@ -72,7 +72,6 @@ class ConnectionPool(object):
             while True:
                 conn = self.conn_queue.get_nowait()
                 if conn:
-                    # pass
                     conn.close()
         # queue.Empty的作用是，如果队列为空，返回True，如果不为空，返回False
         except queue.Empty:

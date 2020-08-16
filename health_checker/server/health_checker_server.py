@@ -6,27 +6,25 @@ from health_checker.server.worker import *
 
 
 class HealthCheckerServer(object):
-    """ main class """
+    """
+    main class
+    为每一个worker分配一个线程，线程结束以后，再将每一个worker的结果汇总起来（模仿map-reduce架构）
+    """
     def __init__(self, client):
         self.client = client
         self.workers = []
+        # 简单工厂模式，通过类的名称，从globals函数返回的字典中获得类对象
         for point in ["CheckBinaryLogs", "CheckRedoLog", "CheckConnections", "CheckSafeReplication"]:
-            # print("globals", globals())
             # globals() 以字典类型返回当前位置的全部全局变量。
             cls = globals()[point]
             # 参数传递给了GenericWorker
-            # print(type(globals()[point]))
-            # print(isinstance(globals()[point], list))
+            # cls()创建一个对象
             self.workers.append(cls(self, "catag", point))
-
-        print(self.workers)
-
 
     def do_health_check(self):
         """ map """
         # 多线程
         threads = [Thread(target=w.map) for w in self.workers]
-        # print(threads)
 
         # 启动线程
         for thread in threads:
@@ -36,10 +34,11 @@ class HealthCheckerServer(object):
             thread.join()
 
         first, rest = self.workers[0], self.workers[1:]
+        # 把所有的结果都添加到first的结果列表中
         for worker in rest:
             first.reduce(worker)
-
         self.result = first.rs
+
 
     def get_summary(self):
         sum_scores = sum([abs(r.score) for r in self.result])
