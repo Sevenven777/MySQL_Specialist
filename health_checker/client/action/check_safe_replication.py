@@ -23,7 +23,6 @@ class CheckSafeReplication(object):
     def __call__(self):
         """
         重载call方法，将对象变为一个可调用的对象
-        :return:
         """
         res = dict(is_slave=Env.database.is_slave)
 
